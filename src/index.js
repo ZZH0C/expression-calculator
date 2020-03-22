@@ -8,11 +8,12 @@ function expressionCalculator(expr) {
     expr = expr.split("");
     let exprNew = expr;
 
-        for (let i=exprNew.length-1; i>=0;i--){
+    for (let i = exprNew.length - 1; i >= 0; i--) {
         if (exprNew[i] === " ") {
             exprNew.splice(i, 1);
 
-        }}
+        }
+    }
 
 
     for (let i = 0; i < exprNew.length; i++) {
@@ -21,6 +22,7 @@ function expressionCalculator(expr) {
                 exprNew[i] = parseFloat(exprNew[i] + exprNew[i + 1]);
                 exprNew.splice(i + 1, 1);
             }
+            exprNew[i] = parseFloat(exprNew[i]);
         }
     }
     calc(exprNew);
@@ -45,7 +47,7 @@ function calc(express) {
                     break;
                 }
             }
-
+            i = 0;
         }
     }
 
@@ -65,7 +67,7 @@ function calc(express) {
                     break;
                 case "/":
                     if (express[i + 1] === 0) {
-                        throw "Division by zero";
+                        throw "TypeError: Division by zero.";
                     }
                     express[i - 1] = express[i - 1] / express[i + 1];
                     express.splice(i, 2);
@@ -90,14 +92,12 @@ function calc(express) {
             }
         }
     }
-    return express;
+    return express[0];
 }
 
 
-console.log(expressionCalculator(  "51+5") );
 
-/*
 module.exports = {
     expressionCalculator
 };
-*/
+
